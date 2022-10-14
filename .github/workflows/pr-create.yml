@@ -1,0 +1,15 @@
+name: "PR opened"
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  discussions: write
+
+jobs:
+  labels:
+    uses: ForgeForce/ActionsStore/.github/workflows/pr-create.yml@main
