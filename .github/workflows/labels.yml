@@ -1,1 +1,19 @@
+name: "Labels"
 
+on:
+  issues:
+    types: [labeled, unlabeled]
+  pull_request:
+    types: [labeled, unlabeled]
+  discussion:
+    types: [labeled, unlabeled]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  discussions: write
+
+jobs:
+  labels:
+    uses: ForgeForce/ActionsStore/.github/workflows/labels.yml@main
