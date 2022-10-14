@@ -13,3 +13,5 @@ permissions:
 jobs:
   labels:
     uses: ForgeForce/ActionsStore/.github/workflows/pr-create.yml@main
+    secrets:
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
