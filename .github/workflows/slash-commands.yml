@@ -1,0 +1,16 @@
+name: "Slash commands"
+
+on: issue_comment
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  discussions: write
+
+jobs:
+  labels:
+    uses: ForgeForce/ActionsStore/.github/workflows/slash-commands.yml@main
+    secrets:
+      GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
+      GH_APP_NAME: ${{ secrets.GH_APP_NAME }}
