@@ -1,8 +1,6 @@
-name: "PR opened"
+name: "Slash commands"
 
-on:
-  pull_request:
-    types: [opened]
+on: issue_comment
 
 permissions:
   contents: read
@@ -12,7 +10,7 @@ permissions:
 
 jobs:
   labels:
-    uses: ForgeForce/ActionsStore/.github/workflows/pr-create.yml@main
+    uses: ForgeForce/ActionsStore/.github/workflows/slash-commands.yml@main
     secrets:
       GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
       GH_APP_NAME: ${{ secrets.GH_APP_NAME }}
