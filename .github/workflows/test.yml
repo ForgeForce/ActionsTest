@@ -14,5 +14,5 @@ jobs:
     steps:
       - uses: ForgeForce/ForgeCommands@jvm
         with:
-          gh_app_key: ${{ secrets.GH_APP_KEY }}
+          gh_app_key: ${{ secrets.GH_APP_KEY2 }}
           gh_app_name: ${{ secrets.GH_APP_NAME }}
