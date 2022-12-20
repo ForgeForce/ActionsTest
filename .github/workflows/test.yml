@@ -1,0 +1,17 @@
+on: issue_comment
+        
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  discussions: write
+ 
+name: Testing
+jobs:
+  check_comments:
+    name: Check comments for /assign
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ForgeForce/ForgeCommands@b82e86c30115a29e9755c97035e2309a307a6723
+        with:
+          who-to-greet: 'sup'
