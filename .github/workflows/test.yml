@@ -12,6 +12,6 @@ jobs:
     name: Check comments for /assign
     runs-on: ubuntu-latest
     steps:
-      - uses: ForgeForce/ForgeCommands@e78632e415e515ef88d1a8ae7b0813591a8a9948
+      - uses: ForgeForce/ForgeCommands@jvm
         with:
           who-to-greet: 'sup'
