@@ -16,3 +16,4 @@ jobs:
         with:
           gh_app_key: ${{ secrets.GH_APP_KEY2 }}
           gh_app_name: ${{ secrets.GH_APP_NAME }}
+          triage_team: triagers
