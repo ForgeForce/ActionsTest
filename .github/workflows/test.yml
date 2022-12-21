@@ -3,6 +3,8 @@ on:
     types: [opened]
   issue_comment:
     types: [created]
+  push:
+    types: [created]
         
 permissions:
   contents: read
