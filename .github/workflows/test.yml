@@ -4,7 +4,8 @@ on:
   issue_comment:
     types: [created]
   push:
-    types: [created]
+    branches:
+      - 'main'
         
 permissions:
   contents: read
