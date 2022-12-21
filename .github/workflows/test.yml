@@ -2,7 +2,7 @@ on:
   pull_request:
     types: [opened]
   issue_comment:
-    types: [created]
+    types: [created, synchronize]
   push:
     branches:
       - 'main'
