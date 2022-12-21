@@ -1,0 +1,27 @@
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created, synchronize]
+  push:
+    branches:
+      - 'main'
+        
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  discussions: write
+ 
+name: Testing
+jobs:
+  check_comments:
+    name: Check comments for /assign
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ForgeForce/ForgeCommands@jvm
+        with:
+          gh_app_key: ${{ secrets.GH_APP_KEY2 }}
+          gh_app_name: ${{ secrets.GH_APP_NAME }}
+          triage_team: test-team
+          triage_project: 4
