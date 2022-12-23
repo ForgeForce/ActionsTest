@@ -27,5 +27,5 @@ jobs:
           gh_app_name: ${{ secrets.GH_APP_NAME }}
           triage_team: test-team
           triage_project: 4
-          labels_to_teams: default -> test-team, rendering -> rendering-people
+          labels_to_teams: 'default -> u: thecurle + sciwhiz12, rendering -> rendering-people'
           latest_version: 1.19
