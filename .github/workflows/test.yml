@@ -27,7 +27,4 @@ jobs:
         with:
           gh_app_key: ${{ secrets.GH_APP_KEY2 }}
           gh_app_name: ${{ secrets.GH_APP_NAME }}
-          triage_team: test-team
-          triage_project: 4
-          labels_to_teams: 'default -> u: thecurle + sciwhiz12, rendering -> rendering-people'
-          latest_version: 1.19
+          config_directory: ForgeForce/ActionsStore:configs@main
