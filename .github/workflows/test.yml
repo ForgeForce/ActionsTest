@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened, synchronize, ready_for_review, labeled]
+    types: [opened, synchronize, ready_for_review, labeled, unlabeled]
   pull_request_review:
     types: [submitted]
   issue_comment:
