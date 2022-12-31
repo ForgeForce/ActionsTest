@@ -2,7 +2,7 @@ on:
   pull_request_target:
     types: [opened, synchronize, ready_for_review, labeled, unlabeled]
   workflow_run:
-    workflows: [pr_review.yml]
+    workflows: [PR Review]
     types:
       - completed
   issue_comment:
