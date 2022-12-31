@@ -1,8 +1,10 @@
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, ready_for_review, labeled, unlabeled]
-  pull_request_review:
-    types: [submitted]
+  workflow_run:
+    workflows: [pr_review.yml]
+    types:
+      - completed
   issue_comment:
     types: [created]
   push:
