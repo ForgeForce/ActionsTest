@@ -1,11 +1,15 @@
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, ready_for_review, labeled, unlabeled]
+  pull_request_review:
+    types: [submitted]
   issue_comment:
-    types: [created, synchronize]
+    types: [created]
   push:
     branches:
       - 'main'
+  issues:
+    types: [labeled, unlabeled]
         
 permissions:
   contents: read
@@ -23,5 +27,4 @@ jobs:
         with:
           gh_app_key: ${{ secrets.GH_APP_KEY2 }}
           gh_app_name: ${{ secrets.GH_APP_NAME }}
-          triage_team: test-team
-          triage_project: 4
+          config_directory: ForgeForce/ActionsStore:configs@main
