@@ -4,6 +4,7 @@ on:
   
 jobs:
   upload_payload:
+    name: Upload payload
     runs-on: ubuntu-latest
     steps:
       - uses: actions/upload-artifact@v3
