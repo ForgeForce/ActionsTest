@@ -1,0 +1,18 @@
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - 'main'
+
+name: 'Private Mirror'
+jobs:
+  private_mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ForgeForce/ForgeCommands@jvm
+        with:
+          gh_app_key: ${{ secrets.GH_APP_KEY2 }}
+          gh_app_name: ${{ secrets.GH_APP_NAME }}
+          config_directory: ForgeForce/ActionsStore:configs@main
+          mode: private_pr_mirror
