@@ -10,6 +10,7 @@ jobs:
   private_mirror:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: ForgeForce/ForgeCommands@jvm
         with:
           gh_app_key: ${{ secrets.GH_APP_KEY2 }}
