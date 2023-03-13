@@ -25,4 +25,4 @@ jobs:
 
       run: wget https://maven.minecraftforge.net/net/minecraftforge/Snowblower/1.0.38/Snowblower-1.0.38-all.jar
     - name: blow
-      run: java -jar Snowblower-1.0.38-all.jar --output blow --branch all --checkout --push --target-ver 1.19.4-rc2 --remote ${{secrets.REMOTE}}
+      run: java -jar Snowblower-1.0.38-all.jar --output blow --branch all --checkout --push --target-ver 19w38a --remote ${{secrets.REMOTE}}
