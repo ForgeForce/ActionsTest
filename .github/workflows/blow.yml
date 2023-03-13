@@ -1,0 +1,28 @@
+name: Test Manual
+
+on: workflow_dispatch
+
+jobs:
+
+  publish:
+
+    runs-on: macos-latest
+
+    steps:
+
+    - name: Checkout project sources
+
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-java@v3
+
+      with:
+
+        distribution: 'zulu' # See 'Supported distributions' for available options
+
+        java-version: '17'
+    - name: Download a file
+
+      run: wget https://maven.minecraftforge.net/net/minecraftforge/Snowblower/1.0.38/Snowblower-1.0.38-all.jar
+    - name: blow
+      run: java -jar Snowblower-1.0.38-all.jar --output blow --branch actions-test --checkout --remote ${{secrets.REMOTE}}
