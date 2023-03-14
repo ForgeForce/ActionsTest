@@ -33,6 +33,8 @@ jobs:
       run: |
          gh extension install actions/gh-actions-cache
          gh actions-cache delete blow_caches
+      env:
+        GH_TOKEN: ${{ github.token }}
     - name: Save caches
       uses: actions/cache/save@v3
       with:
