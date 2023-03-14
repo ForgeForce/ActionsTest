@@ -29,6 +29,10 @@ jobs:
         key: blow_caches
     - name: blow
       run: java -jar Snowblower-1.0.38-all.jar --cache cache --output blow --branch all --checkout --push --start-ver 1.14.4 --target-ver 19w37a --remote ${{secrets.REMOTE}}
+    - name: Delete old caches
+      run: |
+         gh extension install actions/gh-actions-cache
+         gh actions-cache delete blow_caches
     - name: Save caches
       uses: actions/cache/save@v3
       with:
