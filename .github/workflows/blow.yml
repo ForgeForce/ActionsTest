@@ -21,8 +21,16 @@ jobs:
         distribution: 'zulu' # See 'Supported distributions' for available options
 
         java-version: '17'
-    - name: Download a file
-
-      run: wget https://maven.minecraftforge.net/net/minecraftforge/Snowblower/1.0.38/Snowblower-1.0.38-all.jar
+    - name: Restore cache
+      id: crestore-cache
+      uses: actions/cache/restore@v3
+      with:
+        path: cache
+        key: blow_caches
     - name: blow
-      run: java -jar Snowblower-1.0.38-all.jar --output blow --branch all --checkout --push --target-ver 19w38a --remote ${{secrets.REMOTE}}
+      run: java -jar Snowblower-1.0.38-all.jar --cache cache --output blow --branch all --checkout --push --target-ver 1.14.4 --remote ${{secrets.REMOTE}}
+    - name: Save caches
+      uses: actions/cache/save@v3
+      with:
+        path: cache
+        key: ${{ steps.crestore-cache.outputs.cache-primary-key }}
