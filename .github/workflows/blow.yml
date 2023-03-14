@@ -32,7 +32,7 @@ jobs:
     - name: Delete old caches
       run: |
          gh extension install actions/gh-actions-cache
-         gh actions-cache delete blow_caches
+         gh actions-cache delete blow_caches --confirm
       env:
         GH_TOKEN: ${{ github.token }}
     - name: Save caches
