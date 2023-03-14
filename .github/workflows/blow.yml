@@ -28,7 +28,7 @@ jobs:
         path: cache
         key: blow_caches
     - name: blow
-      run: java -jar Snowblower-1.0.38-all.jar --cache cache --output blow --branch all --checkout --push --target-ver 1.16.5 --remote ${{secrets.REMOTE}}
+      run: java -jar Snowblower-1.0.38-all.jar --cache cache --output blow --branch all --checkout --push --target-ver 1.16-rc1 --remote ${{secrets.REMOTE}}
     - name: Save caches
       uses: actions/cache/save@v3
       with:
