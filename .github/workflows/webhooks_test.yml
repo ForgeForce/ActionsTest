@@ -15,7 +15,8 @@ jobs:
 
     - uses: matyrobbrt/action-webhooks@main
       with:
-        webhook_url: ''
-        status: ''
+        webhook_url: ${{ secrets.WEBHOOK_URL }}
+        status: 'started'
+        version: '1.0.0'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
