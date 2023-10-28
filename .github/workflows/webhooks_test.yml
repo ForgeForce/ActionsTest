@@ -1,0 +1,19 @@
+name: Test Webhooks
+
+on: workflow_dispatch
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout project sources
+
+      uses: actions/checkout@v2
+
+    - uses: matyrobbrt/action-webhooks@main
+      with:
+        webhook_url: ''
+        status: ''
