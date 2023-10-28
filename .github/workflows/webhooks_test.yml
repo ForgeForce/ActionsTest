@@ -17,3 +17,5 @@ jobs:
       with:
         webhook_url: ''
         status: ''
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
