@@ -1,0 +1,13 @@
+name: Test Versioning
+
+on: workflow_dispatch
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: matyrobbrt/actions-tag-versioning@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
