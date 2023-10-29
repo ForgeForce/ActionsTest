@@ -16,14 +16,21 @@ on:
     secrets:
       DISCORD_WEBHOOK:
         required: true
+      
       MAVEN_USER:
-        required: true
+        required: false
       MAVEN_PASSWORD:
-        required: true
+        required: false
+      
+      SONATYPE_USER:
+        required: false
+      SONATYPE_PASSWORD:
+        required: false
+        
       GPG_PRIVATE_KEY:
-        required: true
+        required: false
       GPG_KEY_PASSWORD:
-        required: true
+        required: false
 
 permissions:
   contents: read
@@ -31,6 +38,8 @@ permissions:
 jobs:
   notify-discord-start:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: matyrobbrt/actions-tag-versioning@main
         id: version
@@ -81,6 +90,6 @@ jobs:
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ needs.gradle.result }}
-          version: ${{ needs.notify-discord-start.steps.version.outputs.version }}
+          version: ${{ needs.notify-discord-start.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
