@@ -1,0 +1,86 @@
+name: Gradle CI
+
+on:
+  workflow_call:
+    inputs:
+      java:
+        description: "The version of Java to use to run Gradle" # Note: Gradle's Java toolchains feature is used for compiling, which is separate from this
+        required: false
+        type: string
+        default: "17"
+      gradle_tasks:
+        description: "The Gradle tasks to run"
+        required: false
+        type: string
+        default: "publish"
+    secrets:
+      DISCORD_WEBHOOK:
+        required: true
+      MAVEN_USER:
+        required: true
+      MAVEN_PASSWORD:
+        required: true
+      GPG_PRIVATE_KEY:
+        required: true
+      GPG_KEY_PASSWORD:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  notify-discord-start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: matyrobbrt/actions-tag-versioning@main
+        name: version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: matyrobbrt/action-webhooks@main
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          status: 'started'
+          version: ${{ steps.version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  gradle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1000
+          fetch-tags: true
+
+      - name: Make Gradle executable
+        # language=bash
+        run: chmod +x ./gradlew
+
+      - name: Setup Java ${{ inputs.java }}
+        # https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md#java
+        # language=bash
+        run: export JAVA_HOME=$(echo $JAVA_HOME_${{ inputs.java }}_X64)
+
+      - name: Gradle ${{ inputs.gradle_tasks }}
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: ${{ inputs.gradle_tasks }}
+        env:
+          MAVEN_USER: ${{ secrets.MAVEN_USER }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSWORD: ${{ secrets.GPG_PASSWORD }}
+
+  notify-discord-end:
+    name: Notify Discord (end)
+    needs: [ "notify-discord-start", "gradle" ]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: matyrobbrt/action-webhooks@main
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ needs.gradle.result }}
+          version: ${{ needs.notify-discord-start.steps.version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
