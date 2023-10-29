@@ -1,4 +1,4 @@
-# https://github.com/MinecraftForge/SharedActions/blob/main/.github/workflows/gradle.yml
+# Based off https://github.com/MinecraftForge/SharedActions/blob/main/.github/workflows/gradle.yml
 name: Gradle publishing CI
 
 on:
@@ -44,12 +44,12 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: matyrobbrt/actions-tag-versioning@main
+      - uses: matyrobbrt/actions-tag-versioning@v1
         name: Calculate version
         id: version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: matyrobbrt/action-webhooks@main
+      - uses: matyrobbrt/action-webhooks@v1
         name: Send Discord start notification
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
@@ -101,7 +101,7 @@ jobs:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - uses: matyrobbrt/action-webhooks@main
+      - uses: matyrobbrt/action-webhooks@v1
         name: Send Discord end notification
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
@@ -112,7 +112,7 @@ jobs:
       - uses: Sibz/github-status-action@v1
         name: Set build status
         with:
-           authToken: ${{secrets.GITHUB_TOKEN}}
+           authToken: ${{ secrets.GITHUB_TOKEN }}
            context: 'Publishing'
            state: ${{ needs.gradle.result }}
            description: "Version: ${{ needs.notify-build-start.outputs.version }}"
