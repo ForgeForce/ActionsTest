@@ -107,6 +107,7 @@ jobs:
            target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
   gradle:
+    needs: ["compute-version"] # Make sure we now the version before starting to build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
