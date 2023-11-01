@@ -43,6 +43,11 @@ on:
       GPG_KEY_PASSWORD:
         required: false
 
+      GPP_KEY:
+        required: false
+      GPP_SECRET:
+        required: false
+
 permissions:
   contents: read
   statuses: write
@@ -141,6 +146,8 @@ jobs:
           GPG_KEY_PASSWORD: ${{ secrets.GPG_KEY_PASSWORD }}
           SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GPP_KEY: ${{ secrets.GPP_KEY }}
+          GPP_SECRET: ${{ secrets.GPP_SECRET }}
 
   notify-build-end:
     name: Build notifications (end)
